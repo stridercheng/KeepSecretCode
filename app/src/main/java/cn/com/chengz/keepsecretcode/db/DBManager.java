@@ -113,4 +113,11 @@ public class DBManager {
 
         db.close();
     }
+
+    public void deleteUser(User user, int accountid) {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        String delete = "delete from user where accountid = '" + accountid + "' and username = '" + user.getUserName() +"'";
+        db.execSQL(delete);
+        db.close();
+    }
 }
