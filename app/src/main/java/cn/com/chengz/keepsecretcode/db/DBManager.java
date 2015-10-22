@@ -120,4 +120,12 @@ public class DBManager {
         db.execSQL(delete);
         db.close();
     }
+
+    public void modifyUser(User user, int accountId, String userNameOld) {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        String modify = "update user set username = '" + user.getUserName() + "', password='" + user.getPassWord() +
+                "' where username = '" + userNameOld + "' and accountId = '" + accountId + "'";
+        db.execSQL(modify);
+        db.close();
+    }
 }
