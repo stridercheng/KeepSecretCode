@@ -32,6 +32,8 @@ public class AccountDetailActivity extends AppCompatActivity {
     @InjectView(R.id.users)
     SwipeMenuListView userListView;
     private int accountId;
+    private List<User> userList;
+    DBManager dbManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +50,7 @@ public class AccountDetailActivity extends AppCompatActivity {
     }
 
     private void initData() {
+        dbManager = new DBManager(this);
         SwipeMenuCreator creator = new SwipeMenuCreator() {
 
             @Override
@@ -56,12 +59,12 @@ public class AccountDetailActivity extends AppCompatActivity {
                 SwipeMenuItem openItem = new SwipeMenuItem(
                         getApplicationContext());
                 // set item background
-                openItem.setBackground(new ColorDrawable(Color.rgb(0xC9, 0xC9,
-                        0xCE)));
+                openItem.setBackground(R.color.lightblue);
                 // set item width
                 openItem.setWidth(DensityUtils.dp2px(AccountDetailActivity.this, 90));
                 // set item title
-                openItem.setTitle("Open");
+//                openItem.setTitle("Open");
+                openItem.setIcon(R.mipmap.icon_modify);
                 // set item title fontsize
                 openItem.setTitleSize(18);
                 // set item title font color
@@ -87,9 +90,8 @@ public class AccountDetailActivity extends AppCompatActivity {
         userListView.setMenuCreator(creator);
         userListView.setSwipeDirection(SwipeMenuListView.DIRECTION_LEFT);
 
-        DBManager dbManager = new DBManager(this);
         Account account = dbManager.getAccountById(accountId);
-        List<User> userList = account.getUserList();
+        userList = account.getUserList();
         if (userList == null) {
             userList = new ArrayList<>();
         }
@@ -102,15 +104,28 @@ public class AccountDetailActivity extends AppCompatActivity {
             public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
                 switch (index) {
                     case 0:
-                        // open
+                        // modify
+                        modifyUser(position);
                         break;
                     case 1:
                         // delete
+                        deleteUser(position);
                         break;
                 }
                 // false : close the menu; true : not close the menu
                 return false;
             }
         });
+    }
+
+    private void modifyUser(int position) {
+        Intent intent = new Intent();
+        intent.setClass(AccountDetailActivity.this, ModifyUserActivity.class);
+        startActivity(intent);
+    }
+
+    private void deleteUser(int position) {
+        User user = userList.get(position);
+        dbManager.deleteUser(user, accountId);
     }
 }
