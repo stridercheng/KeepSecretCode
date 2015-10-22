@@ -28,7 +28,6 @@
         android:layout_marginRight="5dp"
         android:background="@color/grey" />
 
-
     <TextView
         android:id="@+id/password"
         android:layout_width="match_parent"

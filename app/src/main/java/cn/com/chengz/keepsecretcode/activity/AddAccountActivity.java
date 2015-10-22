@@ -34,6 +34,7 @@ public class AddAccountActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_account);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("");
+        toolbar.setLogo(R.mipmap.ic_launcher);
         setSupportActionBar(toolbar);
         ButterKnife.inject(this);
 
