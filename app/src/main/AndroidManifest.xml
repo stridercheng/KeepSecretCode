@@ -32,6 +32,10 @@
         <activity
             android:name=".activity.ModifyUserActivity"
             android:label="@string/title_activity_modify_user"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.SplashActivity"
+            android:label="@string/title_activity_splash"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
