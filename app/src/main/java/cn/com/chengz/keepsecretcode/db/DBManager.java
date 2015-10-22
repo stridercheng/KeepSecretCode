@@ -128,4 +128,11 @@ public class DBManager {
         db.execSQL(modify);
         db.close();
     }
+
+    public void deleteAccount(int accountId) {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        String delete = "delete from account where id = '" + accountId + "'";
+        db.execSQL(delete);
+        db.close();
+    }
 }

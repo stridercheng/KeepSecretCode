@@ -79,5 +79,13 @@ public class ModifyUserActivity extends AppCompatActivity {
         user.setPassWord(passWordNew);
         DBManager dbManager = new DBManager(this);
         dbManager.modifyUser(user, accountId, userName);
+
+        Intent intent = new Intent();
+        intent.putExtra("position", position);
+        intent.putExtra("userName", userNameNew);
+        intent.putExtra("passWord", passWordNew);
+        setResult(12, intent);
+
+        finish();
     }
 }

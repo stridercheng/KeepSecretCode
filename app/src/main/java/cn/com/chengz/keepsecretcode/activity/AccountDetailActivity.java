@@ -135,10 +135,14 @@ public class AccountDetailActivity extends AppCompatActivity {
 
     private void deleteUser(int position) {
         User user = userList.get(position);
+        dbManager.deleteUser(user, accountId);
         userList.remove(user);
+        if (userList.size() == 0) {
+            dbManager.deleteAccount(accountId);
+            finish();
+        }
         adapter.setUserList(userList);
         adapter.notifyDataSetChanged();
-        dbManager.deleteUser(user, accountId);
     }
 
     @Override

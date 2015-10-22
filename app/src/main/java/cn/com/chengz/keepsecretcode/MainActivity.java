@@ -54,8 +54,6 @@ public class MainActivity extends AppCompatActivity implements AccountListAdapte
         secretList.setAdapter(adapter);
 
         dbManager = new DBManager(this);
-        new GetAccountAsync(this).execute();
-
         btn_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -64,6 +62,12 @@ public class MainActivity extends AppCompatActivity implements AccountListAdapte
                 startActivityForResult(intent, REQUESTCODE);
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        new GetAccountAsync(this).execute();
     }
 
     @Override
