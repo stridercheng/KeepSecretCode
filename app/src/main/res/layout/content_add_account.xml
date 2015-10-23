@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:background="@drawable/edit_border"
+            android:background="@android:color/transparent"
             android:hint="请输入用户名"
             android:paddingBottom="10dp"
             android:paddingTop="10dp" />
@@ -56,7 +56,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:background="@drawable/edit_border"
+            android:background="@android:color/transparent"
             android:hint="请输入密码"
             android:paddingBottom="10dp"
             android:paddingTop="10dp" />

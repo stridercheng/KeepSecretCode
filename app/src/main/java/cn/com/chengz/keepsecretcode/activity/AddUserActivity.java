@@ -35,6 +35,7 @@ public class AddUserActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_user);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("码管");
         setSupportActionBar(toolbar);
         ButterKnife.inject(this);
         Intent intent = getIntent();

@@ -26,9 +26,10 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String accountSQL = "create table if not exists account(id integer primary key, accountname text)";
         String userSQL = "create table if not exists user(id integer primary key, username text, password text, accountid integer)";
-
+        String masterSQL = "create table if not exists master(password text)";
         db.execSQL(accountSQL);
         db.execSQL(userSQL);
+        db.execSQL(masterSQL);
     }
 
     @Override

@@ -38,8 +38,7 @@ public class MainActivity extends AppCompatActivity implements AccountListAdapte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("");
-        toolbar.setLogo(R.mipmap.ic_launcher);
+        toolbar.setTitle("码管");
         setSupportActionBar(toolbar);
         ButterKnife.inject(this);
         initData();
@@ -118,10 +117,5 @@ public class MainActivity extends AppCompatActivity implements AccountListAdapte
         intent.putExtra("accountId", accountList.get(position).getId());
         Log.e("MainActivity", "accountId" + accountList.get(position).getId());
         startActivity(intent);
-    }
-
-    @Override
-    public void onUserAccountClick(View v, int accountPosition, int userPosition) {
-        this.onAccountClick(v, accountPosition);
     }
 }

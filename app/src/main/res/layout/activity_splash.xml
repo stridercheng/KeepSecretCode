@@ -1,14 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/darkgreen">
 
-    <EditText
-        android:id="@+id/password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-    <EditText
-        android:id="@+id/confirm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:layout_above="@+id/enterArea"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:src="@mipmap/icon_banner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_centerInParent="true"
+        android:id="@+id/enterArea"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/normalCode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:visibility="gone"
+            android:background="@drawable/edit_border">
+
+            <EditText
+                android:id="@+id/password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:paddingBottom="8dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:text="1944444"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/enterCode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/edit_border"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/first"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:paddingBottom="8dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:text="1944444"
+                android:textSize="20sp" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="2px"
+                android:background="@color/divider"
+                android:paddingLeft="3dp"
+                android:paddingRight="3dp" />
+
+            <EditText
+                android:id="@+id/confirm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:paddingBottom="8dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:text="1944444"
+                android:textSize="20sp" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/login"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:textSize="20sp"
+        android:textColor="@color/milkwhite"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/enterArea"
+        android:background="@drawable/btn_shape"
+        android:text="确     定" />
 </RelativeLayout>

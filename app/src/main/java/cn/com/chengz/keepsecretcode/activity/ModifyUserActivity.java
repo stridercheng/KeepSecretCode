@@ -36,8 +36,7 @@ public class ModifyUserActivity extends AppCompatActivity {
         setContentView(R.layout.activity_modify_user);
         ButterKnife.inject(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("");
-        toolbar.setLogo(R.mipmap.ic_launcher);
+        toolbar.setTitle("码管");
         setSupportActionBar(toolbar);
 
         Intent intent = getIntent();

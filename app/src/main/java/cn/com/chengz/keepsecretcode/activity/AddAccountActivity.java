@@ -33,8 +33,7 @@ public class AddAccountActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_account);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("");
-        toolbar.setLogo(R.mipmap.ic_launcher);
+        toolbar.setTitle("码管");
         setSupportActionBar(toolbar);
         ButterKnife.inject(this);
 

@@ -30,6 +30,7 @@ public class AccountListAdapter extends RecyclerView.Adapter<AccountListAdapter.
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(mContext).inflate(R.layout.layout_account_item, parent, false);
         ViewHolder viewHolder = new ViewHolder(view);
+        viewHolder.itemView.setOnClickListener(this);
         return viewHolder;
     }
 
@@ -45,10 +46,9 @@ public class AccountListAdapter extends RecyclerView.Adapter<AccountListAdapter.
     public void onBindViewHolder(ViewHolder holder, int position) {
         Account account = accountList.get(position);
         List<User> userList = account.getUserList();
-
+        holder.itemView.setTag(position);
         holder.accountName.setText(account.getAccountName());
         holder.accountName.setTag(position);
-        holder.accountName.setOnClickListener(this);
         holder.users.removeAllViews();
         for (int i = 0; i < userList.size(); i++) {
             TextView textView = new TextView(mContext);
@@ -61,7 +61,6 @@ public class AccountListAdapter extends RecyclerView.Adapter<AccountListAdapter.
             textView.setLayoutParams(params);
             textView.setTag(R.id.accountid, position);
             textView.setTag(R.id.userid, i);
-            textView.setOnClickListener(this);
             holder.users.addView(textView);
         }
     }
@@ -73,19 +72,16 @@ public class AccountListAdapter extends RecyclerView.Adapter<AccountListAdapter.
 
     @Override
     public void onClick(View v) {
-        // account click
-        if (v.getId() == R.id.accountname) {
-            mListener.onAccountClick(v, (Integer) v.getTag());
-        } else {// userAccount click
-            mListener.onUserAccountClick(v, (int)v.getTag(R.id.accountid), (int)v.getTag(R.id.userid));
-        }
+        mListener.onAccountClick(v, (Integer) v.getTag());
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView accountName;
         private LinearLayout users;
+        private View itemView;
         public ViewHolder(View itemView) {
             super(itemView);
+            this.itemView = itemView;
             accountName = (TextView) itemView.findViewById(R.id.accountname);
             users = (LinearLayout) itemView.findViewById(R.id.users);
         }
@@ -93,6 +89,5 @@ public class AccountListAdapter extends RecyclerView.Adapter<AccountListAdapter.
 
     public interface OnAccountItemClickListener{
         void onAccountClick(View v, int position);
-        void onUserAccountClick(View v, int accountPosition, int userPosition);
     }
 }

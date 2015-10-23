@@ -134,4 +134,25 @@ public class DBManager {
         db.execSQL(delete);
         db.close();
     }
+
+    public String getMasterPassWord() {
+        String passWord = "";
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        String query = "select password from master";
+        Cursor cursor = db.rawQuery(query, new String[]{});
+
+        if (cursor.moveToFirst()) {
+            passWord = cursor.getString(cursor.getColumnIndex("password"));
+        }
+        db.close();
+        return passWord;
+    }
+
+    public void saveMasterPassWord(String passWord) {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        String insert = "insert into master(password) values('" + passWord + "')";
+        db.execSQL(insert);
+
+        db.close();
+    }
 }
