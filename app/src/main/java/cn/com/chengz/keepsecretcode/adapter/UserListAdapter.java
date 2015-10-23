@@ -24,8 +24,15 @@ public class UserListAdapter extends BaseAdapter {
         this.userList = userList;
     }
 
-    public void setUserList(List<User> userList) {
-        this.userList = userList;
+    public void modifyData(User user, int position) {
+        this.userList.remove(position);
+        this.userList.add(position, user);
+        this.notifyDataSetChanged();
+    }
+
+    public void deleteData(int position) {
+        this.userList.remove(position);
+        this.notifyDataSetChanged();
     }
 
     @Override

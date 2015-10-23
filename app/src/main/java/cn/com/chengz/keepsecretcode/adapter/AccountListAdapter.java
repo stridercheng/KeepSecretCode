@@ -49,6 +49,7 @@ public class AccountListAdapter extends RecyclerView.Adapter<AccountListAdapter.
         holder.accountName.setText(account.getAccountName());
         holder.accountName.setTag(position);
         holder.accountName.setOnClickListener(this);
+        holder.users.removeAllViews();
         for (int i = 0; i < userList.size(); i++) {
             TextView textView = new TextView(mContext);
             textView.setText(userList.get(i).getUserName());

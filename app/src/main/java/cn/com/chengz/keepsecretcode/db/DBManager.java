@@ -31,7 +31,6 @@ public class DBManager {
             String exesql2 = " select * from user where accountid = ?";
             Cursor cursorUser = db.rawQuery(exesql2, new String[]{String.valueOf(cursor.getInt(cursor.getColumnIndex("id")))});
             while (cursorUser.moveToNext()) {
-                userList = new ArrayList<>();
                 User user = new User();
                 user.setUserName(cursorUser.getString(cursorUser.getColumnIndex("username")));
                 user.setPassWord(cursorUser.getString(cursorUser.getColumnIndex("password")));

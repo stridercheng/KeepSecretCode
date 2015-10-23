@@ -96,6 +96,7 @@ public class MainActivity extends AppCompatActivity implements AccountListAdapte
 
         @Override
         protected Void doInBackground(Void... params) {
+            accountList.clear();
             accountList = dbManager.getAllAccount();
             return null;
         }

@@ -6,6 +6,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.baoyz.swipemenulistview.SwipeMenu;
@@ -141,23 +142,18 @@ public class AccountDetailActivity extends AppCompatActivity {
             dbManager.deleteAccount(accountId);
             finish();
         }
-        adapter.setUserList(userList);
-        adapter.notifyDataSetChanged();
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUESTCODE && resultCode == RESULT_OK) {
+        Log.e("xxxx", "OK");
+        if (requestCode == REQUESTCODE) {
             int position = data.getIntExtra("position", 0);
             User user = userList.get(position);
             user.setUserName(data.getStringExtra("userName"));
             user.setPassWord(data.getStringExtra("passWord"));
-            userList.remove(position);
-            userList.add(position, user);
-
-            adapter.setUserList(userList);
-            adapter.notifyDataSetChanged();
+            adapter.modifyData(user, position);
         }
     }
 }

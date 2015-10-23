@@ -18,6 +18,7 @@
             android:textSize="25sp"
             android:layout_marginLeft="15dp"
             android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <ImageView
@@ -25,6 +26,7 @@
             android:layout_height="1px"
             android:layout_marginLeft="3dp"
             android:layout_marginRight="3dp"
+            android:clickable="false"
             android:background="@color/divider"/>
         <LinearLayout
             android:id="@+id/users"
