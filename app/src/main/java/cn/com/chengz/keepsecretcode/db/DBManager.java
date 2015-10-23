@@ -22,7 +22,7 @@ public class DBManager {
 
     public List<Account> getAllAccount() {
         List<Account> accountList = new ArrayList<>();
-        String exesql = "select * from account ";
+        String exesql = "select id, accountname from account ";
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         Cursor cursor = db.rawQuery(exesql, new String[]{});
         while (cursor.moveToNext()) {
@@ -51,17 +51,17 @@ public class DBManager {
     }
 
     public Account getAccountById(int id) {
-        List<User> userList = null;
+        List<User> userList = new ArrayList<>();
         Account account = new Account();
         String exesql = " select * from account where id = ? ";
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         Cursor cursor = db.rawQuery(exesql, new String[]{String.valueOf(id)});
         if (cursor.moveToFirst()) {
             account.setAccountName(cursor.getString(cursor.getColumnIndex("accountname")));
+            account.setId(cursor.getInt(cursor.getColumnIndex("id")));
             String exeql2 = "select * from user where accountid = ?";
             Cursor cursorUser = db.rawQuery(exeql2, new String[]{String.valueOf(id)});
             while (cursorUser.moveToNext()) {
-                userList = new ArrayList<>();
                 User user = new User();
                 user.setUserName(cursorUser.getString(cursorUser.getColumnIndex("username")));
                 user.setPassWord(cursorUser.getString(cursorUser.getColumnIndex("password")));

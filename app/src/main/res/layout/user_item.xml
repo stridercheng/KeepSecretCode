@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/userframe"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_below="@+id/accountname"
-    android:layout_centerInParent="true"
     android:layout_marginLeft="10dp"
     android:layout_marginRight="10dp"
-    android:layout_marginTop="10dp"
+    android:layout_marginTop="5dp"
     android:background="@drawable/edit_border"
     android:orientation="vertical"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    >
     <TextView
         android:id="@+id/username"
         android:layout_width="match_parent"

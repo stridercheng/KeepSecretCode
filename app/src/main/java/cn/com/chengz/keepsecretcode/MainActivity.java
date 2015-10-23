@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 
 import java.util.ArrayList;
@@ -115,6 +116,7 @@ public class MainActivity extends AppCompatActivity implements AccountListAdapte
         Intent intent = new Intent();
         intent.setClass(MainActivity.this, AccountDetailActivity.class);
         intent.putExtra("accountId", accountList.get(position).getId());
+        Log.e("MainActivity", "accountId" + accountList.get(position).getId());
         startActivity(intent);
     }
 

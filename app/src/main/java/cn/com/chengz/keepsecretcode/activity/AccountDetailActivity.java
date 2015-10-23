@@ -4,9 +4,11 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 import com.baoyz.swipemenulistview.SwipeMenu;
@@ -28,16 +30,20 @@ import cn.com.chengz.keepsecretcode.entity.User;
 import cn.com.chengz.keepsecretcode.utils.DensityUtils;
 
 public class AccountDetailActivity extends AppCompatActivity {
-    private final static int REQUESTCODE = 12;
+    private final static int REQUESTCODE_MODIFY = 12;
+    private final static int REQUESTCODE_ADD = 13;
     @InjectView(R.id.accountname)
     TextView tv_accountName;
     @InjectView(R.id.users)
     SwipeMenuListView userListView;
+    @InjectView(R.id.fab)
+    FloatingActionButton btn_add;
     private int accountId;
     private List<User> userList;
     DBManager dbManager;
     private UserListAdapter adapter;
     private Account account;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -120,6 +126,17 @@ public class AccountDetailActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+        btn_add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(AccountDetailActivity.this, AddUserActivity.class);
+                intent.putExtra("accountName", account.getAccountName());
+                intent.putExtra("accountId", account.getId());
+                startActivityForResult(intent, REQUESTCODE_ADD);
+            }
+        });
     }
 
     private void modifyUser(int position) {
@@ -131,7 +148,7 @@ public class AccountDetailActivity extends AppCompatActivity {
         intent.putExtra("userName", user.getUserName());
         intent.putExtra("passWord", user.getPassWord());
         intent.putExtra("position", position);
-        startActivityForResult(intent, REQUESTCODE);
+        startActivityForResult(intent, REQUESTCODE_MODIFY);
     }
 
     private void deleteUser(int position) {
@@ -142,18 +159,23 @@ public class AccountDetailActivity extends AppCompatActivity {
             dbManager.deleteAccount(accountId);
             finish();
         }
+        adapter.notifyDataSetChanged();
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         Log.e("xxxx", "OK");
-        if (requestCode == REQUESTCODE) {
+        if (requestCode == REQUESTCODE_MODIFY) {
             int position = data.getIntExtra("position", 0);
             User user = userList.get(position);
             user.setUserName(data.getStringExtra("userName"));
             user.setPassWord(data.getStringExtra("passWord"));
             adapter.modifyData(user, position);
+        } else if (requestCode == REQUESTCODE_ADD) {
+            User user = new User(data.getStringExtra("userName"), data.getStringExtra("passWord"));
+            userList.add(user);
+            adapter.notifyDataSetChanged();
         }
     }
 }
