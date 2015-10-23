@@ -166,6 +166,9 @@ public class AccountDetailActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         Log.e("xxxx", "OK");
+        if (data == null) {
+            return;
+        }
         if (requestCode == REQUESTCODE_MODIFY) {
             int position = data.getIntExtra("position", 0);
             User user = userList.get(position);
